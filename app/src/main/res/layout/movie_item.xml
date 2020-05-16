@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="250dp">
 
-</LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="sdfsdf"
+        android:backgroundTint="@color/cardview_light_background"
+        android:gravity="center"
+        android:id="@+id/chummaText"
+    />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:text="sdfdsf"
+        android:id="@+id/textview"
+        />
+
+
+
+
+
+</FrameLayout>

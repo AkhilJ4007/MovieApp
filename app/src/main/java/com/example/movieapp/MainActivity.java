@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         layoutInflater = LayoutInflater.from(this);
-        MovieListMVCInterface movieListMVCInterface = new MovieListMVC(layoutInflater,null);
+        MovieListMVCInterface movieListMVCInterface = new MovieListMVC(layoutInflater,null,this);
         setContentView(movieListMVCInterface.getRootView());
 
 
