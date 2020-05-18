@@ -9,8 +9,19 @@ import android.view.LayoutInflater;
 
 import com.example.movieapp.BaseClasses.BaseActivity;
 import com.example.movieapp.PureDI.MVCViewFactory;
+import com.example.movieapp.model.GitHubService;
+import com.example.movieapp.model.MovieItemSchema;
+import com.example.movieapp.model.MovieResponseSchema;
 import com.example.movieapp.movieList.MovieListMVC;
 import com.example.movieapp.movieList.MovieListMVCInterface;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends BaseActivity implements MovieListMVC.Listener{
@@ -32,6 +43,30 @@ public class MainActivity extends BaseActivity implements MovieListMVC.Listener{
     protected void onStart() {
         super.onStart();
         movieListMVCInterface.bindData("YIPEEEE!!!");
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.themoviedb.org/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GitHubService service = retrofit.create(GitHubService.class);
+        Log.d("movie",retrofit.toString());
+
+
+        service.listMovies("daca1350ce3f8d413aa422f7367623cb").enqueue(new Callback<MovieResponseSchema>() {
+            @Override
+            public void onResponse(Call<MovieResponseSchema> call, Response<MovieResponseSchema> response) {
+
+
+               List<MovieItemSchema> movieList = response.body().getResults();
+              String title = movieList.get(0).getTitle();
+              Log.d("movie",title);
+            }
+
+            @Override
+            public void onFailure(Call<MovieResponseSchema> call, Throwable t) {
+
+            }
+        });
 
     }
 
