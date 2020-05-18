@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 
 import com.example.movieapp.BaseClasses.BaseActivity;
@@ -34,11 +35,14 @@ public class MainActivity extends BaseActivity implements MovieListMVC.Listener{
 
     }
 
-
     //movie list listener
-
     @Override
-    public void onChange() {
-
+    public void onClick() {
+        Log.d("click","clickkeddd!!");
     }
+
+
+
+
+
 }
