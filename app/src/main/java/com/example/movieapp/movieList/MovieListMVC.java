@@ -14,10 +14,11 @@ import com.example.movieapp.R;
 import com.example.movieapp.views.BaseObservableViewMvc;
 import com.example.movieapp.views.ObservableViewMvc;
 
-public class MovieListMVC extends BaseObservableViewMvc<MovieListMVCInterface.Listener> implements MovieListMVCInterface{
+public class MovieListMVC extends BaseObservableViewMvc<MovieListMVCInterface.Listener> implements MovieListMVCInterface,RecyclerAdapter.Listener{
 
 
     private RecyclerView recyclerView;
+    private RecyclerAdapter recyclerAdapter;
 
 
     public MovieListMVC(LayoutInflater layoutInflater, ViewGroup viewGroup, MVCViewFactory viewFactory) {
@@ -25,18 +26,27 @@ public class MovieListMVC extends BaseObservableViewMvc<MovieListMVCInterface.Li
         setRootView(layoutInflater.inflate(R.layout.activity_main,viewGroup));
 
         recyclerView = findViewById(R.id.movieList);
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(layoutInflater,viewFactory);
+        recyclerAdapter = new RecyclerAdapter(layoutInflater,viewFactory,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(recyclerAdapter);
 
 
     }
-
-
-
-    // bind data from activity to movie list
+    //movie list binds data
     @Override
-    public void bindData() {
+    public void bindData(String s) {
+        recyclerAdapter.bindData(s);
+    }
+
+    //click from adapter
+
+    @Override
+    public void onClick() {
 
     }
+
+
+    //Recycler Adapter
+
+
 }
