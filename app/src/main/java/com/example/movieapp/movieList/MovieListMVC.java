@@ -1,6 +1,7 @@
 package com.example.movieapp.movieList;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -11,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movieapp.PureDI.MVCViewFactory;
 import com.example.movieapp.R;
+import com.example.movieapp.model.MovieItem;
 import com.example.movieapp.views.BaseObservableViewMvc;
 import com.example.movieapp.views.ObservableViewMvc;
+
+import java.util.List;
 
 public class MovieListMVC extends BaseObservableViewMvc<MovieListMVCInterface.Listener> implements MovieListMVCInterface,RecyclerAdapter.Listener{
 
@@ -34,8 +38,10 @@ public class MovieListMVC extends BaseObservableViewMvc<MovieListMVCInterface.Li
     }
     //movie list binds data
     @Override
-    public void bindData(String s) {
-        recyclerAdapter.bindData(s);
+    public void bindData(List <MovieItem> movieItems) {
+
+//        Log.d("in movieList",movieItems.get(0).getTitle());
+        recyclerAdapter.bindData(movieItems);
     }
 
     //click from adapter
