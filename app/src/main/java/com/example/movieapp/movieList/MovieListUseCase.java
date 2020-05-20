@@ -10,6 +10,7 @@ import com.example.movieapp.model.MovieResponseSchema;
 import com.example.movieapp.model.MovieService;
 import com.example.movieapp.views.BaseObservableViewMvc;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -38,12 +39,7 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
         movieService.listMovies("daca1350ce3f8d413aa422f7367623cb").enqueue(new Callback<MovieResponseSchema>() {
             @Override
             public void onResponse(Call<MovieResponseSchema> call, Response<MovieResponseSchema> response) {
-
-
-                Log.d("inResponse",response.body().getResults().get(0).getTitle());
-
-
-                   notifyActivity(response.body().getResults());
+                notifyActivity(response.body().getResults());
             }
 
             @Override
@@ -57,34 +53,6 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
 
     public void notifyActivity( List<MovieItemSchema> movieItemSchemas){
 
-
-
-//        String title;
-//        List<MovieItem> movieItems = new ArrayList<>();
-//
-//
-//        for(MovieItemSchema movieItemSchema:movieItemSchemas){
-//            if(movieItemSchema.getTitle()!= null){
-//                title = movieItemSchema.getTitle();
-//            }
-//            else {
-//                title = movieItemSchema.getName();
-//            }
-//
-//
-//            movieItems.add(new MovieItem(movieItemSchema.getId(),title,movieItemSchema.getReleaseDate(),movieItemSchema.getOverview(),movieItemSchema.getPosterPath()));
-//
-//        }
-//
-//        if(movieItems.size()>0) {
-//
-//            for (Listener listener : getListeners()) {
-//                Log.d("notifyActivity", "in here bui");
-//                listener.moviesSuccess(movieItems);
-//
-//            }
-
-//        }
 
         if(movieItemSchemas.size()>0) {
 
@@ -100,9 +68,12 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
     public class ListRunnable implements Runnable{
 
         List<MovieItemSchema> movieItemSchema = new ArrayList<>();
+        List<Listener> listeners = new ArrayList<>();
 
         public ListRunnable(List<MovieItemSchema> movieItems, Set<Listener> listeners) {
             this.movieItemSchema.addAll(movieItems);
+            this.listeners.addAll(listeners);
+            //Log.d("in runnabkle","in runnable");
         }
 
         @Override
@@ -111,7 +82,10 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
             List<MovieItem> movieItems = new ArrayList<>();
 
 
-            for(MovieItemSchema movieItemSchema:movieItemSchemas){
+
+            for(MovieItemSchema movieItemSchema:movieItemSchema){
+
+
                 if(movieItemSchema.getTitle()!= null){
                     title = movieItemSchema.getTitle();
                 }
@@ -130,7 +104,7 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
                     @Override
                     public void run() {
                         Log.d("in ui thread","in ui thread");
-                        for (Listener listener : getListeners()) {
+                        for (Listener listener : listeners) {
                             Log.d("notifyActivity", "in here bui");
                             listener.moviesSuccess(movieItems);
 
