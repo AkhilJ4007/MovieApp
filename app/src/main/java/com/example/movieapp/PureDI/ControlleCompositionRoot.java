@@ -34,6 +34,8 @@ public class ControlleCompositionRoot {
     }
 
 
-
+    public RunnableFactory getRunnableFactory(){
+        return compositionRoot.getRunnableFactory();
+    }
 
 }

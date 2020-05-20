@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 
 import com.example.movieapp.BaseClasses.BaseActivity;
 import com.example.movieapp.PureDI.MVCViewFactory;
+import com.example.movieapp.PureDI.RunnableFactory;
 import com.example.movieapp.model.MovieItem;
 import com.example.movieapp.model.MovieService;
 import com.example.movieapp.model.MovieItemSchema;
@@ -32,6 +33,7 @@ public class MainActivity extends BaseActivity implements MovieListMVC.Listener,
 
     MovieListMVCInterface movieListMVCInterface;
     MovieListUseCaseInter movieListUseCaseInter;
+    RunnableFactory runnableFactory;
 
 
     @Override
@@ -40,7 +42,8 @@ public class MainActivity extends BaseActivity implements MovieListMVC.Listener,
         MVCViewFactory viewfactory = getCompositionRoot().getMVCViewFactory();
         movieListMVCInterface = viewfactory.getMovieListMVC(null);
         movieListMVCInterface.registerListener(this);
-        movieListUseCaseInter = new MovieListUseCase(getCompositionRoot().getMovieService());
+        runnableFactory = getCompositionRoot().getRunnableFactory();
+        movieListUseCaseInter = new MovieListUseCase(getCompositionRoot().getMovieService(),runnableFactory);
         movieListUseCaseInter.registerListener(this);
         setContentView(movieListMVCInterface.getRootView());
     }

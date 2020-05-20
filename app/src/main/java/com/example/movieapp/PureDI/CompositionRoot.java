@@ -26,6 +26,10 @@ public class CompositionRoot {
        return getRetrofit().create(MovieService.class);
     }
 
+    public RunnableFactory getRunnableFactory(){
+        return new RunnableFactory();
+    }
+
 
 
 

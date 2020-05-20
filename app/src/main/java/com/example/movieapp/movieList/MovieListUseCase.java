@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+
+import com.example.movieapp.PureDI.RunnableFactory;
 import com.example.movieapp.model.MovieItem;
 import com.example.movieapp.model.MovieItemSchema;
 import com.example.movieapp.model.MovieResponseSchema;
@@ -24,11 +26,13 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
 
     private MovieService movieService;
     private  volatile List<MovieItemSchema> movieItemSchemas = new ArrayList<>();
-    private Handler uiHandler = new Handler(Looper.getMainLooper());
+    private  RunnableFactory runnableFactory;
 
-    public MovieListUseCase(MovieService movieService) {
+
+    public MovieListUseCase(MovieService movieService, RunnableFactory runnableFactory) {
 
         this.movieService = movieService;
+        this.runnableFactory = runnableFactory;
 
 
     }
@@ -56,7 +60,7 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
 
         if(movieItemSchemas.size()>0) {
 
-            Runnable listRunnable = new ListRunnable(movieItemSchemas, getListeners());
+            Runnable listRunnable = runnableFactory.getListRunnable(movieItemSchemas,getListeners());
 
             new Thread(listRunnable).start();
         }
@@ -65,60 +69,7 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
     }
 
 
-    public class ListRunnable implements Runnable{
 
-        List<MovieItemSchema> movieItemSchema = new ArrayList<>();
-        List<Listener> listeners = new ArrayList<>();
-
-        public ListRunnable(List<MovieItemSchema> movieItems, Set<Listener> listeners) {
-            this.movieItemSchema.addAll(movieItems);
-            this.listeners.addAll(listeners);
-            //Log.d("in runnabkle","in runnable");
-        }
-
-        @Override
-        public void run() {
-            String title;
-            List<MovieItem> movieItems = new ArrayList<>();
-
-
-
-            for(MovieItemSchema movieItemSchema:movieItemSchema){
-
-
-                if(movieItemSchema.getTitle()!= null){
-                    title = movieItemSchema.getTitle();
-                }
-                else {
-                    title = movieItemSchema.getName();
-                }
-
-
-                movieItems.add(new MovieItem(movieItemSchema.getId(),title,movieItemSchema.getReleaseDate(),movieItemSchema.getOverview(),movieItemSchema.getPosterPath()));
-
-            }
-
-            if(movieItems.size()>0) {
-
-                uiHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d("in ui thread","in ui thread");
-                        for (Listener listener : listeners) {
-                            Log.d("notifyActivity", "in here bui");
-                            listener.moviesSuccess(movieItems);
-
-                        }
-
-                    }
-                });
-
-
-            }
-
-
-        }
-    }
 
 
 
