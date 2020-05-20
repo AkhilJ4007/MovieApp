@@ -29,8 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends BaseActivity implements MovieListMVC.Listener,MovieListUseCaseInter.Listener{
 
-    RecyclerView recyclerView;
-    LayoutInflater layoutInflater;
+
     MovieListMVCInterface movieListMVCInterface;
     MovieListUseCaseInter movieListUseCaseInter;
 
