@@ -17,10 +17,10 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> implements MovieItemInterface.Listener{
 
 
-    LayoutInflater layoutInflater;
-    MVCViewFactory viewFactory;
-    RecyclerAdapter.Listener listener;
-    List<MovieItem> movieItems = new ArrayList<>();
+    private LayoutInflater layoutInflater;
+    private MVCViewFactory viewFactory;
+    private RecyclerAdapter.Listener listener;
+    private List<MovieItem> movieItems = new ArrayList<>();
 
     public interface Listener{
         void onClick();
@@ -30,7 +30,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         MovieItemInterface movieItemInterface = viewFactory.getMovieListItemView(parent);
-        Log.d("onCreate","sdfdsfsdf");
         return new MyViewHolder(movieItemInterface);
     }
 

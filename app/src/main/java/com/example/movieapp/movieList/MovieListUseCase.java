@@ -1,21 +1,15 @@
 package com.example.movieapp.movieList;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
 
-import com.example.movieapp.PureDI.RunnableFactory;
-import com.example.movieapp.model.MovieItem;
 import com.example.movieapp.model.MovieItemSchema;
 import com.example.movieapp.model.MovieResponseSchema;
 import com.example.movieapp.model.MovieService;
 import com.example.movieapp.views.BaseObservableViewMvc;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,14 +20,9 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
 
     private MovieService movieService;
     private  volatile List<MovieItemSchema> movieItemSchemas = new ArrayList<>();
-    private  RunnableFactory runnableFactory;
-
-
-    public MovieListUseCase(MovieService movieService, RunnableFactory runnableFactory) {
+    public MovieListUseCase(MovieService movieService) {
 
         this.movieService = movieService;
-        this.runnableFactory = runnableFactory;
-
 
     }
 
@@ -43,7 +32,8 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
         movieService.listMovies("daca1350ce3f8d413aa422f7367623cb").enqueue(new Callback<MovieResponseSchema>() {
             @Override
             public void onResponse(Call<MovieResponseSchema> call, Response<MovieResponseSchema> response) {
-                notifyActivity(response.body().getResults());
+                Log.d("nootify List",response.body().getResults().get(0).getTitle());
+                notifyListeners(response.body().getResults());
             }
 
             @Override
@@ -55,18 +45,16 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
 
     }
 
-    public void notifyActivity( List<MovieItemSchema> movieItemSchemas){
-
-
-        if(movieItemSchemas.size()>0) {
-
-            Runnable listRunnable = runnableFactory.getListRunnable(movieItemSchemas,getListeners());
-
-            new Thread(listRunnable).start();
+    private void notifyListeners(List<MovieItemSchema> results) {
+        if(results.size()>0) {
+            for(Listener listener: getListeners()){
+                Log.d("nootify List","in here");
+                listener.moviesSuccess(results);
+            }
         }
 
-
     }
+
 
 
 

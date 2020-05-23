@@ -9,8 +9,8 @@ import java.util.List;
 public interface MovieListUseCaseInter extends ObservableViewMvc<MovieListUseCaseInter.Listener> {
 
 
-        public interface Listener{
-            void moviesSuccess(List<MovieItem> movieItems);
+         interface Listener{
+            void moviesSuccess(List<MovieItemSchema> movieItems);
         }
 
        void getMovieList();

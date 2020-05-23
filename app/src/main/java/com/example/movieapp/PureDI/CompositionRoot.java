@@ -1,5 +1,8 @@
 package com.example.movieapp.PureDI;
 
+import com.example.movieapp.Factories.CallableFactory;
+import com.example.movieapp.Factories.UseCaseFactory;
+import com.example.movieapp.Threading.MovieExecutors;
 import com.example.movieapp.model.MovieItem;
 import com.example.movieapp.model.MovieResponseSchema;
 import com.example.movieapp.model.MovieService;
@@ -26,12 +29,18 @@ public class CompositionRoot {
        return getRetrofit().create(MovieService.class);
     }
 
-    public RunnableFactory getRunnableFactory(){
-        return new RunnableFactory();
+
+    public MovieExecutors getExecuters() {
+        return new MovieExecutors(getCallableFactory(),getUseCaseFactory());
     }
 
+    private UseCaseFactory getUseCaseFactory() {
+        return new UseCaseFactory(getMovieService());
+    }
 
-
+    private CallableFactory getCallableFactory() {
+        return new CallableFactory();
+    }
 
 
 }
