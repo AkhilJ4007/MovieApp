@@ -1,20 +1,15 @@
 package com.example.movieapp.movieList;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movieapp.PureDI.MVCViewFactory;
 import com.example.movieapp.R;
-import com.example.movieapp.model.MovieItem;
+import com.example.movieapp.RoomDB.MovieItem;
 import com.example.movieapp.views.BaseObservableViewMvc;
-import com.example.movieapp.views.ObservableViewMvc;
 
 import java.util.List;
 

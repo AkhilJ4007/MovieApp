@@ -1,15 +1,13 @@
 package com.example.movieapp.movieList;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movieapp.PureDI.MVCViewFactory;
-import com.example.movieapp.model.MovieItem;
+import com.example.movieapp.RoomDB.MovieItem;
 
 import java.util.ArrayList;
 import java.util.List;

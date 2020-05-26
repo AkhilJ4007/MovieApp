@@ -1,6 +1,5 @@
 package com.example.movieapp.movieList;
 
-import com.example.movieapp.model.MovieItem;
 import com.example.movieapp.model.MovieItemSchema;
 import com.example.movieapp.views.ObservableViewMvc;
 

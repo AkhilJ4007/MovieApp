@@ -1,12 +1,9 @@
 package com.example.movieapp.Repository;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.movieapp.Threading.MovieExecutors;
-import com.example.movieapp.Wrapper.Resource;
-import com.example.movieapp.model.MovieItem;
+import com.example.movieapp.RoomDB.MovieItem;
 
 import java.util.List;
 

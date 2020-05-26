@@ -3,15 +3,8 @@ package com.example.movieapp.PureDI;
 import com.example.movieapp.Factories.CallableFactory;
 import com.example.movieapp.Factories.UseCaseFactory;
 import com.example.movieapp.Threading.MovieExecutors;
-import com.example.movieapp.model.MovieItem;
-import com.example.movieapp.model.MovieResponseSchema;
 import com.example.movieapp.model.MovieService;
 
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

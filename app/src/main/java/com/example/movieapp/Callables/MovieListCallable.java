@@ -1,6 +1,6 @@
 package com.example.movieapp.Callables;
 
-import com.example.movieapp.model.MovieItem;
+import com.example.movieapp.RoomDB.MovieItem;
 import com.example.movieapp.model.MovieItemSchema;
 
 import java.util.ArrayList;

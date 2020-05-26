@@ -1,15 +1,24 @@
-package com.example.movieapp.model;
+package com.example.movieapp.RoomDB;
 
-public class MovieItem {
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "movieItem")
+public class MovieItemEntity {
+    @PrimaryKey
+    @ColumnInfo(name = "id")
     private Integer id;
+    @ColumnInfo(name = "title")
     private String title;
+    @ColumnInfo(name = "releaseDate")
     private String releaseDate;
+    @ColumnInfo(name = "overview")
     private String overview;
+    @ColumnInfo(name = "posterPath")
     private String posterPath;
 
-
-    public MovieItem(Integer id, String title, String releaseDate, String overview, String posterPath) {
+    public MovieItemEntity(Integer id, String title, String releaseDate, String overview, String posterPath) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
@@ -21,40 +30,19 @@ public class MovieItem {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
     public String getOverview() {
         return overview;
-    }
-
-    public void setOverview(String overview) {
-        this.overview = overview;
     }
 
     public String getPosterPath() {
         return posterPath;
     }
-
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
-    }
-
 }

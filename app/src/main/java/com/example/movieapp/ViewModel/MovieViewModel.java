@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.movieapp.Repository.MovieRepo;
-import com.example.movieapp.model.MovieItem;
+import com.example.movieapp.RoomDB.MovieItem;
 
 import java.util.List;
 
