@@ -13,7 +13,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected ControlleCompositionRoot getCompositionRoot(){
 
         if (controlleCompositionRoot == null){
-            controlleCompositionRoot = new ControlleCompositionRoot(this,((CustomApplication) getApplication()).getCompositionRoot());
+            controlleCompositionRoot = new ControlleCompositionRoot(this,((CustomApplication) getApplication()).getCompositionRoot(),this);
 
         }
 

@@ -6,6 +6,7 @@ import com.example.movieapp.Callables.MovieListCallable;
 import com.example.movieapp.Factories.CallableFactory;
 import com.example.movieapp.Factories.UseCaseFactory;
 import com.example.movieapp.RoomDB.MovieItem;
+import com.example.movieapp.RoomDB.MovieItemEntity;
 import com.example.movieapp.model.MovieItemSchema;
 import com.example.movieapp.movieList.MovieListUseCase;
 import com.example.movieapp.movieList.MovieListUseCaseInter;
@@ -19,7 +20,7 @@ import java.util.concurrent.Future;
 public class MovieExecutors implements MovieListUseCaseInter.Listener {
 
     public interface Listener{
-        void movieListSuccess(List<MovieItem> movieItems);
+        void movieListSuccess(List<MovieItemEntity> movieItems);
     }
 
     private ExecutorService executor = Executors.newFixedThreadPool(5);
@@ -49,7 +50,7 @@ public class MovieExecutors implements MovieListUseCaseInter.Listener {
     public void moviesSuccess(List<MovieItemSchema> movieItems) {
         Log.d("in movieSuccess",movieItems.get(0).getId().toString());
          MovieListCallable movieListCallable = callableFactory.getListCallable(movieItems);
-        Future<List<MovieItem>> future = executor.submit(movieListCallable);
+        Future<List<MovieItemEntity>> future = executor.submit(movieListCallable);
 
             try {
                 listener.movieListSuccess(future.get());

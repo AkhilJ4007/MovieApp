@@ -32,7 +32,7 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
         movieService.listMovies("daca1350ce3f8d413aa422f7367623cb").enqueue(new Callback<MovieResponseSchema>() {
             @Override
             public void onResponse(Call<MovieResponseSchema> call, Response<MovieResponseSchema> response) {
-                Log.d("nootify List",response.body().getResults().get(0).getTitle());
+                //Log.d("nootify List",response.body().getResults().get(0).getName());
                 notifyListeners(response.body().getResults());
             }
 
@@ -48,7 +48,7 @@ public class MovieListUseCase extends BaseObservableViewMvc<MovieListUseCaseInte
     private void notifyListeners(List<MovieItemSchema> results) {
         if(results.size()>0) {
             for(Listener listener: getListeners()){
-                Log.d("nootify List","in here");
+               // Log.d("nootify List","in here");
                 listener.moviesSuccess(results);
             }
         }

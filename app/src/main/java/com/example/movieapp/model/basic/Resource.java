@@ -1,11 +1,14 @@
-package com.example.movieapp.Wrapper;
+package com.example.movieapp.model.basic;
 
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/**
+ * Created by 3piCerberus on 24/04/2018.
+ */
+//a generic wrapper class that describes a data with a status
 public class Resource<T> {
-
     @NonNull
     public final Status status;
     @Nullable
@@ -29,5 +32,4 @@ public class Resource<T> {
     public static <T> Resource<T> loading(@Nullable T data) {
         return new Resource<>(Status.LOADING, data, null);
     }
-
 }

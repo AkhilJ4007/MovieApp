@@ -1,13 +1,14 @@
 package com.example.movieapp.Callables;
 
 import com.example.movieapp.RoomDB.MovieItem;
+import com.example.movieapp.RoomDB.MovieItemEntity;
 import com.example.movieapp.model.MovieItemSchema;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class MovieListCallable implements Callable<List<MovieItem>> {
+public class MovieListCallable implements Callable<List<MovieItemEntity>> {
 
 
 private List<MovieItemSchema> movieItemSchemas;
@@ -17,10 +18,10 @@ private List<MovieItemSchema> movieItemSchemas;
     }
 
     @Override
-    public List<MovieItem> call(){
+    public List<MovieItemEntity> call(){
 
         String title;
-        List<MovieItem> movieItems = new ArrayList<>();
+        List<MovieItemEntity> movieItems = new ArrayList<>();
 
 
 
@@ -35,7 +36,7 @@ private List<MovieItemSchema> movieItemSchemas;
             }
 
 
-            movieItems.add(new MovieItem(movieItemSchema.getId(),title,movieItemSchema.getReleaseDate(),movieItemSchema.getOverview(),movieItemSchema.getPosterPath()));
+            movieItems.add(new MovieItemEntity(movieItemSchema.getId(),title,movieItemSchema.getReleaseDate(),movieItemSchema.getOverview(),movieItemSchema.getPosterPath()));
 
         }
 

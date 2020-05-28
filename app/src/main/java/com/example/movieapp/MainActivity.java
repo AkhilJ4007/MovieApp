@@ -1,9 +1,9 @@
 package com.example.movieapp;
 
-import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.lifecycle.Observer;
 
 import com.example.movieapp.BaseClasses.BaseActivity;
 import com.example.movieapp.PureDI.MVCViewFactory;
@@ -16,10 +16,7 @@ import com.example.movieapp.movieList.MovieListMVC;
 import com.example.movieapp.movieList.MovieListMVCInterface;
 
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -44,12 +41,18 @@ public class MainActivity extends BaseActivity implements MovieListMVC.Listener{
         // testing db
         testDB();
         //viewModel.getMovieList().observe(this, movieItems -> movieListMVCInterface.bindData(movieItems));
+        viewModel.getMovieList().observe(this, new Observer<List<MovieItemEntity>>() {
+            @Override
+            public void onChanged(List<MovieItemEntity> movieItemEntities) {
+                Log.d("in activity",movieItemEntities.get(0).getTitle());
+            }
+        });
     }
 
     private void testDB() {
 
-        MovieDBTask mTask = new MovieDBTask(MovieDatabase.getDB(this));
-        mTask.execute();
+       // InsertMoviesDBTask mTask = new InsertMoviesDBTask(MovieDatabase.getDB(this));
+       // mTask.execute();
 
 
     }
@@ -77,43 +80,7 @@ public class MainActivity extends BaseActivity implements MovieListMVC.Listener{
         Log.d("click","clickkeddd!!");
     }
 
-    public class MovieDBTask extends AsyncTask<Void,Void,String>{
 
-        MovieDatabase movieDatabase;
-        List<MovieItemEntity> movieItemEntities = new ArrayList<>();
-        MovieItemEntity[] movieItemEntities1;
-
-        public MovieDBTask(MovieDatabase movieDatabase) {
-            this.movieDatabase = movieDatabase;
-            movieItemEntities.add(new MovieItemEntity(123, "movieee", "123", "dfdsadfvsfvs", "dfwsdwdsd"));
-            movieItemEntities.add(new MovieItemEntity(1244, "eerws", "123", "dfdsadfvsfvs", "dfwsdwdsd"));
-            movieItemEntities.add(new MovieItemEntity(1242, "uiop", "123", "dfdsadfvsfvs", "dfwsdwdsd"));
-            movieItemEntities1 = new MovieItemEntity[movieItemEntities.size()];
-
-            movieItemEntities.toArray(movieItemEntities1);
-            Log.d("ss",movieItemEntities1[2].getTitle());
-
-        }
-
-
-
-        @Override
-        protected String doInBackground(Void... voids) {
-            String s;
-            //movieDatabase.movieDAO().insertMovie(new MovieItemEntity(123, "movieee", "123", "dfdsadfvsfvs", "dfwsdwdsd"));
-
-            movieDatabase.movieDAO().insertAllMovies(movieItemEntities1);
-            s = movieDatabase.movieDAO().getMoviesList().get(1).getTitle();
-            return s;
-        }
-
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Log.d("s",s);
-        }
-    }
 
 
 }

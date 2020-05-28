@@ -1,5 +1,6 @@
 package com.example.movieapp.RoomDB;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -11,7 +12,7 @@ import java.util.List;
 public interface MovieDAO {
 
     @Query("SELECT * FROM movieItem")
-    List<MovieItem> getMoviesList();
+    LiveData<List<MovieItemEntity>> getMoviesList();
 
     @Query("DELETE FROM movieItem")
     void deleteAll();

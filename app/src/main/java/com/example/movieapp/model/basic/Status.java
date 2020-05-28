@@ -1,4 +1,4 @@
-package com.example.movieapp.Wrapper;
+package com.example.movieapp.model.basic;
 
 /**
  * Created by 3piCerberus on 24/04/2018.
