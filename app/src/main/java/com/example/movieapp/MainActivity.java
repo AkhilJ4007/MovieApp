@@ -38,23 +38,14 @@ public class MainActivity extends BaseActivity implements MovieListMVC.Listener{
         movieListMVCInterface.registerListener(this);
         setContentView(movieListMVCInterface.getRootView());
         viewModel = getCompositionRoot().getViewModelFactory().create(MovieViewModel.class);
-        // testing db
-        testDB();
-        //viewModel.getMovieList().observe(this, movieItems -> movieListMVCInterface.bindData(movieItems));
+
         viewModel.getMovieList().observe(this, new Observer<List<MovieItemEntity>>() {
             @Override
             public void onChanged(List<MovieItemEntity> movieItemEntities) {
-                Log.d("in activity",movieItemEntities.get(0).getTitle());
+                //Log.d("in activity",movieItemEntities.get(0).getTitle());
+                movieListMVCInterface.bindData(movieItemEntities);
             }
         });
-    }
-
-    private void testDB() {
-
-       // InsertMoviesDBTask mTask = new InsertMoviesDBTask(MovieDatabase.getDB(this));
-       // mTask.execute();
-
-
     }
 
     @Override

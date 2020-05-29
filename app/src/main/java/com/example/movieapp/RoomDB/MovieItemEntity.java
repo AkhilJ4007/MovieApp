@@ -15,15 +15,15 @@ public class MovieItemEntity {
     private String releaseDate;
     @ColumnInfo(name = "overview")
     private String overview;
-    @ColumnInfo(name = "posterPath")
-    private String posterPath;
+    @ColumnInfo(name = "backdrop_path")
+    private String backdrop_path;
 
-    public MovieItemEntity(Integer id, String title, String releaseDate, String overview, String posterPath) {
+    public MovieItemEntity(Integer id, String title, String releaseDate, String overview, String backdrop_path) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
         this.overview = overview;
-        this.posterPath = posterPath;
+        this.backdrop_path = backdrop_path;
     }
 
     public Integer getId() {
@@ -42,7 +42,7 @@ public class MovieItemEntity {
         return overview;
     }
 
-    public String getPosterPath() {
-        return posterPath;
+    public String getBackdrop_path() {
+        return backdrop_path;
     }
 }

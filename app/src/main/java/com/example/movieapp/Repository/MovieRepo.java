@@ -14,8 +14,7 @@ import com.example.movieapp.RoomDB.MovieDatabase;
 import com.example.movieapp.RoomDB.MovieItemEntity;
 import com.example.movieapp.Threading.MovieExecutors;
 import com.example.movieapp.RoomDB.MovieItem;
-import com.example.movieapp.model.basic.Resource;
-import com.example.movieapp.model.basic.Status;
+
 
 import java.util.List;
 
@@ -23,8 +22,6 @@ public class MovieRepo implements MovieExecutors.Listener, GetMoviesDBTask.Liste
 
     private  MediatorLiveData<List<MovieItemEntity>> movieList = new MediatorLiveData<>();
     private MovieExecutors executors;
-    private Status internetstatus;
-    private MutableLiveData<Resource<List<MovieItemEntity>>> movieListObservable = new MutableLiveData<>();
     private MediatorLiveData<List<MovieItemEntity>> chumma = new MediatorLiveData<>();
     private MovieDatabase movieDatabase;
     private  LifecycleOwner lifecycleOwner;

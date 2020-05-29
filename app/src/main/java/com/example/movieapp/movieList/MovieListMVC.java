@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.movieapp.PureDI.MVCViewFactory;
 import com.example.movieapp.R;
 import com.example.movieapp.RoomDB.MovieItem;
+import com.example.movieapp.RoomDB.MovieItemEntity;
 import com.example.movieapp.views.BaseObservableViewMvc;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class MovieListMVC extends BaseObservableViewMvc<MovieListMVCInterface.Li
     }
     //movie list binds data
     @Override
-    public void bindData(List <MovieItem> movieItems) {
+    public void bindData(List <MovieItemEntity> movieItems) {
 
 //        Log.d("in movieList",movieItems.get(0).getTitle());
         recyclerAdapter.bindData(movieItems);

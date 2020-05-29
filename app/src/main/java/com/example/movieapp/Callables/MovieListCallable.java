@@ -36,7 +36,7 @@ private List<MovieItemSchema> movieItemSchemas;
             }
 
 
-            movieItems.add(new MovieItemEntity(movieItemSchema.getId(),title,movieItemSchema.getReleaseDate(),movieItemSchema.getOverview(),movieItemSchema.getPosterPath()));
+            movieItems.add(new MovieItemEntity(movieItemSchema.getId(),title,movieItemSchema.getReleaseDate(),movieItemSchema.getOverview(),movieItemSchema.getBackdropPath()));
 
         }
 

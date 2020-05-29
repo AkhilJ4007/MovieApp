@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movieapp.PureDI.MVCViewFactory;
 import com.example.movieapp.RoomDB.MovieItem;
+import com.example.movieapp.RoomDB.MovieItemEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     private LayoutInflater layoutInflater;
     private MVCViewFactory viewFactory;
     private RecyclerAdapter.Listener listener;
-    private List<MovieItem> movieItems = new ArrayList<>();
+    private List<MovieItemEntity> movieItems = new ArrayList<>();
 
     public interface Listener{
         void onClick();
@@ -35,7 +36,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         holder.movieItemInterface.registerListener(this);
-        holder.movieItemInterface.bindQuestions(movieItems.get(position).getTitle());
+        holder.movieItemInterface.bindMovies(movieItems.get(position));
 
 
     }
@@ -58,7 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     }
 
     //from movielist
-    public void bindData(List <MovieItem> movieItems) {
+    public void bindData(List <MovieItemEntity> movieItems) {
         this.movieItems = movieItems;
         notifyDataSetChanged();
     }

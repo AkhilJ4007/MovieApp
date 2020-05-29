@@ -50,6 +50,15 @@ dependencies {
     // android annotations
     implementation "androidx.annotation:annotation:1.1.0"
 
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    //card view
+    implementation "androidx.cardview:cardview:1.0.0"
+
+    //loading animation
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
