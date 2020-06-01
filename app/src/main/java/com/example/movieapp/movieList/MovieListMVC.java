@@ -23,7 +23,7 @@ public class MovieListMVC extends BaseObservableViewMvc<MovieListMVCInterface.Li
 
     public MovieListMVC(LayoutInflater layoutInflater, ViewGroup viewGroup, MVCViewFactory viewFactory) {
 
-        setRootView(layoutInflater.inflate(R.layout.activity_main,viewGroup));
+        setRootView(layoutInflater.inflate(R.layout.activity_main,viewGroup,false));
 
         recyclerView = findViewById(R.id.movieList);
         recyclerAdapter = new RecyclerAdapter(layoutInflater,viewFactory,this);

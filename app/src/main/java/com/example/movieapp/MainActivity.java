@@ -3,9 +3,12 @@ package com.example.movieapp;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
 import com.example.movieapp.BaseClasses.BaseActivity;
+import com.example.movieapp.Fragments.MovieListFragment;
 import com.example.movieapp.PureDI.MVCViewFactory;
 import com.example.movieapp.RoomDB.MovieDatabase;
 import com.example.movieapp.RoomDB.MovieItemEntity;
@@ -33,34 +36,20 @@ public class MainActivity extends BaseActivity implements MovieListMVC.Listener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MVCViewFactory viewfactory = getCompositionRoot().getMVCViewFactory();
-        movieListMVCInterface = viewfactory.getMovieListMVC(null);
-        movieListMVCInterface.registerListener(this);
-        setContentView(movieListMVCInterface.getRootView());
-        viewModel = getCompositionRoot().getViewModelFactory().create(MovieViewModel.class);
+        setContentView(R.layout.activity_main_wrapper);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        MovieListFragment fragment = new MovieListFragment();
+        fragmentTransaction.add(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
 
-        viewModel.getMovieList().observe(this, new Observer<List<MovieItemEntity>>() {
-            @Override
-            public void onChanged(List<MovieItemEntity> movieItemEntities) {
-                //Log.d("in activity",movieItemEntities.get(0).getTitle());
-                movieListMVCInterface.bindData(movieItemEntities);
-            }
-        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        MovieService service = retrofit.create(MovieService.class);
-        Log.d("movie",retrofit.toString());
-
-       viewModel.getMovieList();
 
 
     }

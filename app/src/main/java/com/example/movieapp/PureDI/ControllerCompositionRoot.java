@@ -14,14 +14,14 @@ import com.example.movieapp.RoomDB.MovieDatabase;
 import com.example.movieapp.Threading.MovieExecutors;
 import com.example.movieapp.model.MovieService;
 
-public class ControlleCompositionRoot {
+public class ControllerCompositionRoot {
     private  Context context;
     private MVCViewFactory mvcViewFactory;
     private CompositionRoot compositionRoot;
     private MovieRepo movieRepo;
     private LifecycleOwner lifecycleOwner;
 
-    public ControlleCompositionRoot(Context context, CompositionRoot compositionRoot, LifecycleOwner lifecycleOwner) {
+    public ControllerCompositionRoot(Context context, CompositionRoot compositionRoot, LifecycleOwner lifecycleOwner) {
         this.context = context;
         this.compositionRoot = compositionRoot;
         this.lifecycleOwner = lifecycleOwner;
