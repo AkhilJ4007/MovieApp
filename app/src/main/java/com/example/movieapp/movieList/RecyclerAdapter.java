@@ -22,7 +22,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     private List<MovieItemEntity> movieItems = new ArrayList<>();
 
     public interface Listener{
-        void onClick();
+        void onClick(MovieItemEntity movieItemEntity);
     }
 
     @NonNull
@@ -66,9 +66,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     // movie item click
     @Override
-    public void onClick() {
+    public void onClick(MovieItemEntity movieItemEntity) {
 
-        listener.onClick();
+        listener.onClick(movieItemEntity);
 
     }
 

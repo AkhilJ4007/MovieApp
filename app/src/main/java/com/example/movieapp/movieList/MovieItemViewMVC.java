@@ -56,7 +56,7 @@ public class MovieItemViewMVC extends BaseObservableViewMvc<MovieItemInterface.L
     public void bindMovies(MovieItemEntity movieItemEntity) {
 
         textView.setText(movieItemEntity.getTitle());
-        String url = "https://image.tmdb.org/t/p/w500/" + movieItemEntity.getBackdrop_path();
+        String url = "https://image.tmdb.org/t/p/w300/" + movieItemEntity.getBackdrop_path();
 
 
         progressBar.setIndeterminateDrawable(doubleBounce);
@@ -68,7 +68,7 @@ public class MovieItemViewMVC extends BaseObservableViewMvc<MovieItemInterface.L
             @Override
             public void onClick(View v) {
                 for(Listener listener:getListeners()){
-                    listener.onClick();
+                    listener.onClick(movieItemEntity);
                 }
             }
         });
@@ -85,9 +85,10 @@ public class MovieItemViewMVC extends BaseObservableViewMvc<MovieItemInterface.L
     @Override
     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
         Log.d("glide","in here");
+
+        target.onResourceReady(resource,new DrawableCrossFadeTransition(500, isFirstResource));
         progressBar.setVisibility(View.GONE);
         cardView.setVisibility(View.VISIBLE);
-        target.onResourceReady(resource,new DrawableCrossFadeTransition(500, isFirstResource));
         return true;
     }
 }

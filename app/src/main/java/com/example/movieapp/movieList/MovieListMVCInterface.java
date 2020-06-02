@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MovieListMVCInterface extends ObservableViewMvc<MovieListMVCInterface.Listener> {
     interface Listener{
-        void onClick();
+        void onClick(MovieItemEntity movieItemEntity);
     }
 
     void bindData(List <MovieItemEntity> movieItems);

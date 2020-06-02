@@ -43,10 +43,10 @@ public class MovieListMVC extends BaseObservableViewMvc<MovieListMVCInterface.Li
     //click from adapter
 
     @Override
-    public void onClick() {
+    public void onClick(MovieItemEntity movieItemEntity) {
 
         for (Listener listener:getListeners()){
-            listener.onClick();
+            listener.onClick(movieItemEntity);
         }
 
 

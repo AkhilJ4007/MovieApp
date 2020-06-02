@@ -25,12 +25,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class MainActivity extends BaseActivity implements MovieListMVC.Listener{
-
-
-    MovieListMVCInterface movieListMVCInterface;
-    MovieViewModel viewModel;
-    MovieDatabase movieDatabase;
+public class MainActivity extends BaseActivity{
 
 
     @Override
@@ -49,15 +44,6 @@ public class MainActivity extends BaseActivity implements MovieListMVC.Listener{
     protected void onStart() {
         super.onStart();
 
-
-
-
-    }
-
-    //movie list listener
-    @Override
-    public void onClick() {
-        Log.d("click","clickkeddd!!");
     }
 
 

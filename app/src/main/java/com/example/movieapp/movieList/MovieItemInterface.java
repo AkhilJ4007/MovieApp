@@ -6,7 +6,7 @@ import com.example.movieapp.views.ObservableViewMvc;
 public interface MovieItemInterface extends ObservableViewMvc<MovieItemInterface.Listener> {
 
     interface Listener{
-        void onClick();
+        void onClick(MovieItemEntity movieItemEntity);
     }
     void bindMovies(MovieItemEntity movieItemEntity);
 }

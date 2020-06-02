@@ -16,7 +16,7 @@
         app:cardCornerRadius="15dp"
         android:visibility="invisible"
         android:id="@+id/cardView"
-        android:minHeight="150dp"
+        android:minHeight="577px"
         >
     <ImageView
         android:layout_width="match_parent"
